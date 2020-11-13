@@ -1,6 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+
 def index(request):
-  html = "<h1>Hello world</h1>"
-  return HttpResponse(html)
+  if request.method == "GET":
+    return render(
+      request,
+      "nlp/home.html"
+    )
+  else:
+    title = request.POST["title"]
+    return render(
+      request,
+      "nlp/home.html",
+      {"title": title.split()}
+    )
